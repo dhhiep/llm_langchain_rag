@@ -1,2 +1,2 @@
-# llm_-multilingual_rag
+# LLM Multilingual RAG
 Study LLM Multilingual + RAG
