@@ -14,9 +14,15 @@ langchain-community = "^0.3.0"
 torch = "^2.4.1"
 pypdf = "^5.0.0"
 sentence-transformers = "^3.1.1"
-gpt4all = "^2.8.2"
 faiss-cpu = "^1.8.0.post1"
 openai = "^1.46.1"
+ollama = "^0.3.3"
+langchain-ollama = "^0.2.0"
+toml = "^0.10.2"
+python-dotenv = "^1.0.1"
+
+[tool.poetry.group.dev.dependencies]
+black = "^24.8.0"
 
 
 [build-system]
