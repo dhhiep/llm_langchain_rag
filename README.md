@@ -68,3 +68,15 @@ A small project to study LLM Multilingual RAG and Langchain. The main objective 
     ls data/db
     # index.faiss index.pkl
     ```
+6. Test QA with RAG from `data/pdf/*.pdf`
+
+    ```bash
+    py main.py
+
+    # Answer:  {'question': 'Mã chương ngành đào tạo toán tin là gì?', 'result': 'Mã ngành đào tạo toán tin là 7460117.'}
+    # Answer:  {'question': 'Chương trình đào tạo ngành toán tin thì đào tạo ở đâu?', 'result': 'Theo dự thảo Chương trình đào tạo ngành Toán tin Khóa 2023, chương trình đào tạo sẽ được thực hiện tại hai cơ sở:\n\n1. Cơ sở 1: 227 Nguyễn Văn Cừ, P4, Q5, Thành Phố Hồ Chí Minh.\n2. Cơ sở 2: Phường Linh Trung, Thành Phố Thủ Đức, Thành phố Hồ Chí Minh.\n\nVậy, chương trình đào tạo ngành Toán tin sẽ được thực hiện tại hai cơ sở này.'}
+    # Answer:  {'question': 'Chương trình giảng dạy ngành toán tin, mục tiêu MT1.1 là gì?', 'result': 'Mục tiêu MT1.1 của chương trình giảng dạy ngành toán tin là "Khái quát kiến thức khoa học và xã hội cơ bản, kiến thức nền tảng Toán học".'}
+    # Answer:  {'question': 'Tóm tắt cấu trúc của chương trình đào tạo', 'result': 'Cấu trúc của chương trình đào tạo Cử nhân Toán Tin như sau:\n\n1. Thông tin chung về chương trình đào tạo\n\t* Tên ngành đào tạo: Toán Tin (tiếng Việt) / Mathematics and Computer Sciences (tiếng Anh)\n\t* Mã ngành đào tạo: 7460117\n\t* Trình độ đào tạo: Đại học\n\t* Tên chương trình: Cử nhân Toán Tin\n\t* Loại hình đào tạo: Chính quy\n\t* Thời gian đào tạo: 4 năm\n2. Mục tiêu đào tạo\n\t* Mục tiêu chung của chương trình là đào tạo cử nhân có kiến thức và kỹ năng về toán tin.\n3. Thông tin chi tiết về chương trình đào tạo\n\t* Ngôn ngữ giảng dạy: Tiếng Việt\n\t* Nơi đào tạo:\n\t\t+ Cơ sở 1: 227 Nguyễn Văn Cừ, P4, Q5, Thành Phố Hồ Chí Minh\n\t\t+ Cơ sở 2: Phường Linh Trung, Thành Phố Thủ Đức, Thành phố Hồ Chí Minh'}
+    # Answer:  {'question': 'Tiêu chuẩn và điều kiện làm thành viên Hội đồng quản trị', 'result': 'Theo Điều 18 của Điều lệ Ngân hàng, tiêu chuẩn và điều kiện làm thành viên Hội đồng quản trị là:\n\n1. Có năng lực hành vi dân sự đầy đủ, không thuộc đối tượng bị cấm quản lý Ngân hàng theo quy định của Luật Doanh nghiệp;\n2. Có trình độ chuyên môn phù hợp với vị trí đảm nhiệm;\n3. Có sức khỏe, phẩm chất đạo đức tốt và trung thực;\n4. Không có tranh chấp hoặc khiếu nại về quyền lợi, nghĩa vụ giữa thành viên Hội đồng quản trị với nhau hoặc với Ngân hàng.\n5. Đáp ứng các tiêu chuẩn và điều kiện khác theo quy định của Luật Doanh nghiệp và Điều lệ Ngân hàng.'}
+    # Answer:  {'question': 'Thời hạn xóa kỷ luật cho người lao động là bao lâu?', 'result': 'Thời hạn xóa kỷ luật cho người lao động là 03 tháng nếu bị khiển trách sau 03 tháng hoặc bị xử lý kỷ luật bằng hình thức kéo dài thời hạn nâng lương sau 06 tháng kể từ ngày bị xử lý, nếu không tái phạm thì đương nhiên được xóa kỷ luật.'}
+    ```
