@@ -1,36 +1,61 @@
 # LLM Multilingual RAG
 A small project to study LLM Multilingual RAG and Langchain. The main objective of this project is to create a helpful chatbot that can answer customer questions about information retrieval from vector databases.
 
-## Use in project
-1. Poetry: Python packaging and dependency management
-2. [Ollama](https://github.com/ollama/ollama): An open-source project that serves as a powerful and user-friendly platform for running LLMs on your local machine
-3. Model: [llama3.2](https://www.llama.com/)
-4. FastAPI: A modern, fast (high-performance), web framework for building APIs with Python 3.6+ based on standard Python type hints
-5. Chatbot: A chatbot that can answer customer questions about information retrieval from vector databases
+## TODO List
+- [x] **Poetry**: Easily manage Python packaging and dependencies.
+- [x] **[Ollama](https://github.com/ollama/ollama)**: A user-friendly, open-source tool for running large language models (LLMs) on your local machine.
+- [x] **Model**: Using the latest [Llama 3.2](https://www.llama.com/) for powerful AI capabilities.
+- [ ] **Chatbot UI**: Build a simple and interactive chatbot interface using Streamlit, a Python framework that lets you create data apps with just a few lines of code.
+- [ ] **Flexible File Upload**: Allow users to upload CSV, JSON, PDF, and DOCX files, with the ability to choose which parts to index.
+- [ ] **Chroma-based Storage and Retrieval**: Utilize Chroma for efficient storage of vector embeddings and fast vector searches.
+- [ ] **Interactive Chatbot**: Enhance chatbot conversations with context-aware responses, powered by Gemini, OpenAI, or local LLMs.
+- [ ] **Customizable LLM Options**: Choose between cloud-based models like Gemini and OpenAI, or local models like OLLAMA, with support for various open-source options.
+- [ ] **Dynamic Chunking Options**: Choose from different chunking strategies like Recursive Token Chunking, Agentic Chunking, Semantic Chunking, or even no chunking.
 
 ## Setup project
-1. Install Poetry:
-    ```bash
-    curl -sSL https://install.python-poetry.org | python3 -
+1. [Install Pyenv](https://github.com/pyenv/pyenv?tab=readme-ov-file#installation)
 
-    python --version # Python 3.12.4
-    poetry --version # Poetry (version 1.8.3)
+   For MacOS
+   ```bash
+    brew update
+    brew install pyenv
+   ```
+2. Set up your shell environment for Pyenv
+
+   For Bash
+   ```bash
+    echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
+    echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
+    echo 'eval "$(pyenv init -)"' >> ~/.bashrc
+   ```
+
+   For ZSH
+   ```bash
+    echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc
+    echo '[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.zshrc
+    echo 'eval "$(pyenv init -)"' >> ~/.zshrc
+   ```
+
+3. Install python via Pyenv
+    ```bash
+    pyenv install 3.12.4
+    pyenv local 3.12.4
+    ```
+4. Create python virtual environment
+    ```bash
+    python -m venv venv
+    source venv/bin/activate
+    pip install -r requirements.txt
     ```
 
-    If you encounter the error `dyld[20269]: Library not loaded` when running Poetry, please uninstall it first using the following command:
+5. Install packages dependencies
     ```bash
-    curl -sSL https://install.python-poetry.org | python3 - --uninstall
+    poetry lock --no-update
+    poetry install --no-root
     ```
+6. Install Ollama: Go to [Ollama](https://ollama.com/download) and follow the instructions to install it on your local machine.
 
-2. Install package dependencies and activate the Poetry shell:
-    ```bash
-    poetry shell # Activate the Poetry shell
-    poetry install
-    ```
-
-3. Install Ollama: Go to [Ollama](https://ollama.com/download) and follow the instructions to install it on your local machine.
-
-4. Download model llama3.2 and start the server:
+7. Download model llama3.2 and start the server:
     ```bash
     # List models of Ollama https://ollama.com/library
     ollama pull llama3.2:3b
@@ -41,7 +66,7 @@ A small project to study LLM Multilingual RAG and Langchain. The main objective 
       "model": "llama3.2:3b",
       "prompt": "Why is the sky blue?",
       "stream": false
-    }'
+    }'~
 
     # Response
     # {"model":"llama3.2:3b","created_at":"2024-10-02T23:27:39.681843Z","response":"The sky appears blue to us during the daytime due to a phenomenon called Rayleigh scattering, named after the British physicist Lord Rayleigh. Here's what happens:\n\n1. **Sunlight enters Earth's atmosphere**: When sunlight enters our planet's atmosphere, it consists of a spectrum of colors, including all the colors of the visible spectrum (red, orange, yellow, green, blue, indigo, and violet).\n2. **Scattering occurs**: As sunlight travels through the atmosphere, it encounters tiny molecules of gases such as nitrogen (N2) and oxygen (O2). These molecules scatter the light in all directions.\n3. **Shorter wavelengths scattered more**: The smaller (shorter) wavelengths of light, like blue and violet, are scattered more than the longer wavelengths (like red and orange). This is because the smaller molecules are more effective at scattering shorter wavelengths.\n4. **Blue light dominates our view**: As a result, when we look up at the sky, we see mostly the scattered blue light from all directions. This is why the sky appears blue to us during the daytime.\n\nIt's worth noting that:\n\n* During sunrise and sunset, the sky can appear more red or orange due to a different scattering process involving atmospheric particles and water vapor.\n* At night, the sky appears dark because there's no sunlight to scatter.\n* In cloudy or hazy conditions, the color of the sky can be affected by other scattering processes.\n\nSo, that's why the sky is blue!","done":true,"done_reason":"stop","context":[...],"total_duration":9894272250,"load_duration":20968542,"prompt_eval_count":31,"prompt_eval_duration":3369451000,"eval_count":302,"eval_duration":6497741000}%
@@ -58,7 +83,7 @@ A small project to study LLM Multilingual RAG and Langchain. The main objective 
     **Note**:
     - If you error `Error: listen tcp 127.0.0.1:11434: bind: address already in use`, please close the Ollama application and run the command `ollama serve` again.
 
-5. Load PDF, embedding data and store to vector DB
+8. Load PDF, embedding data and store to vector DB
 
     ```bash
     cp .env.template .env
@@ -68,7 +93,7 @@ A small project to study LLM Multilingual RAG and Langchain. The main objective 
     ls data/db
     # index.faiss index.pkl
     ```
-6. Test QA with RAG from `data/pdf/*.pdf`
+9. Test QA with RAG from `data/pdf/*.pdf`
 
     ```bash
     py main.py
@@ -80,3 +105,8 @@ A small project to study LLM Multilingual RAG and Langchain. The main objective 
     # Answer:  {'question': 'Tiêu chuẩn và điều kiện làm thành viên Hội đồng quản trị', 'result': 'Theo Điều 18 của Điều lệ Ngân hàng, tiêu chuẩn và điều kiện làm thành viên Hội đồng quản trị là:\n\n1. Có năng lực hành vi dân sự đầy đủ, không thuộc đối tượng bị cấm quản lý Ngân hàng theo quy định của Luật Doanh nghiệp;\n2. Có trình độ chuyên môn phù hợp với vị trí đảm nhiệm;\n3. Có sức khỏe, phẩm chất đạo đức tốt và trung thực;\n4. Không có tranh chấp hoặc khiếu nại về quyền lợi, nghĩa vụ giữa thành viên Hội đồng quản trị với nhau hoặc với Ngân hàng.\n5. Đáp ứng các tiêu chuẩn và điều kiện khác theo quy định của Luật Doanh nghiệp và Điều lệ Ngân hàng.'}
     # Answer:  {'question': 'Thời hạn xóa kỷ luật cho người lao động là bao lâu?', 'result': 'Thời hạn xóa kỷ luật cho người lao động là 03 tháng nếu bị khiển trách sau 03 tháng hoặc bị xử lý kỷ luật bằng hình thức kéo dài thời hạn nâng lương sau 06 tháng kể từ ngày bị xử lý, nếu không tái phạm thì đương nhiên được xóa kỷ luật.'}
     ```
+
+10.  Run Chatbot UI
+   ```bash
+   streamlit run chatbot.py
+   ```
