@@ -17,8 +17,7 @@ gpt4all = "^2.8.2"
 faiss-cpu = "^1.8.0.post1"
 
 [tool.poetry.group.dev.dependencies]
-black = "^24.8.0"
-
+ruff = "^0.7.0"
 
 [build-system]
 requires = ["poetry-core"]
